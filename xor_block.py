@@ -46,7 +46,7 @@ def outputCsharp(outList):
       else:
          lines.append(str(hex(item)))
       i = i + 1
-   outText = 'byte[] buf = new byte[' + str(len(outList)) + '] {' + ",\n".join(lines) + '}'
+   outText = 'byte[] buf = new byte[' + str(len(outList)) + '] {' + ",\n".join(lines) + '};'
    return outText
 
 def parseVb(inText):
