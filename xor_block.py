@@ -20,7 +20,6 @@ def inputFile(inFile):
       f = open(inFile, 'r')
       lines = f.readlines()
       for line in lines:
-         #line = line.replace("\n","")
          inText = inText + line
    return inText
 
@@ -38,13 +37,13 @@ def parseCsharp(inText):
 
 def outputCsharp(outList):
    lines = []
-   i = 0
+   i = 6
    for item in outList:
       linesI = int(i / 12)
       if linesI < len(lines):
-         lines[linesI] = lines[linesI] + ',' + str(hex(item))
+         lines[linesI] = lines[linesI] + ',' + f'0x{item:02x}'
       else:
-         lines.append(str(hex(item)))
+         lines.append(f'0x{item:02x}')
       i = i + 1
    outText = 'byte[] buf = new byte[' + str(len(outList)) + '] {' + ",\n".join(lines) + '};'
    return outText
@@ -72,7 +71,7 @@ def outputVb(outList):
       else:
          lines.append(str(item))
       i = i + 1
-   outText = 'buf = Array(' + " _\n".join(lines) + ')'
+   outText = 'buf = Array(' + ", _\n".join(lines) + ')'
    return outText
 
 def parseC(inText):
@@ -96,9 +95,9 @@ def outputC(outList):
    for item in outList:
       linesI = int(i / 14)
       if linesI < len(lines):
-         lines[linesI] = lines[linesI] + str(hex(item)).replace('0x', '\\x')
+         lines[linesI] = lines[linesI] + f'\\x{item:02x}'
       else:
-         lines.append(str(hex(item)).replace('0x', '\\x'))
+         lines.append(f'\\x{item:02x}')
       i = i + 1
    outText = "unsigned char buf[] = \n\"" + "\"\n\"".join(lines) + '";'
    return outText
