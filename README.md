@@ -1,4 +1,6 @@
 # xor-block
+This project has moved. To get the latest version, pull from https://codeberg.org/JonStratton/xor-block
+
 This script uses a series of digits to xor byte arrays. Supported formats are: ps1, csharp, c and vbapplication.
 
 	cat pre.csharp | python3 ./xor_block.py -i - -f csharp -k "2,4,6,8,10,12"
